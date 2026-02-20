@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tienda Sara - Galería de productos con las mejores marcas.">
+    <title>Tienda Sara | Productos</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ============================================================
+         HEADER / NAVBAR
+         ============================================================ -->
+    <nav class="navbar navbar-expand-lg navbar-sara sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-bag-heart-fill me-2"></i>Tienda Sara
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="productos.html">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="carrito.html">
+                            <i class="bi bi-cart3 me-1"></i>Carrito
+                            <span class="cart-badge" id="cartCount">0</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="search-bar d-flex">
+                    <input type="text" class="form-control" placeholder="Buscar productos..." id="searchInput">
+                    <button class="btn" type="button" id="searchBtn">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+         BREADCRUMB
+         ============================================================ -->
+    <section class="breadcrumb-sara">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Productos</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         MAIN CONTENT
+         ============================================================ -->
+    <section class="py-4">
+        <div class="container">
+            <div class="row">
+
+                <!-- ==================== SIDEBAR FILTROS ==================== -->
+                <div class="col-lg-3 mb-4">
+                    <div class="filter-sidebar">
+                        <!-- Categorías -->
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h6 class="form-label mb-3"><i class="bi bi-funnel me-2"></i>Categorías</h6>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input filter-cat" type="checkbox" value="electronica"
+                                        id="catElectronica">
+                                    <label class="form-check-label" for="catElectronica">Electrónica</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input filter-cat" type="checkbox" value="ropa"
+                                        id="catRopa">
+                                    <label class="form-check-label" for="catRopa">Ropa</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input filter-cat" type="checkbox" value="hogar"
+                                        id="catHogar">
+                                    <label class="form-check-label" for="catHogar">Hogar</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input filter-cat" type="checkbox" value="deportes"
+                                        id="catDeportes">
+                                    <label class="form-check-label" for="catDeportes">Deportes</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input filter-cat" type="checkbox" value="alimentos"
+                                        id="catAlimentos">
+                                    <label class="form-check-label" for="catAlimentos">Alimentos</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Marcas -->
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h6 class="form-label mb-3"><i class="bi bi-tags me-2"></i>Marcas</h6>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input filter-brand" type="checkbox" value="Samsung"
+                                        id="brandSamsung">
+                                    <label class="form-check-label" for="brandSamsung">Samsung</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input filter-brand" type="checkbox" value="Nike"
+                                        id="brandNike">
+                                    <label class="form-check-label" for="brandNike">Nike</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input filter-brand" type="checkbox" value="LG"
+                                        id="brandLG">
+                                    <label class="form-check-label" for="brandLG">LG</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input filter-brand" type="checkbox" value="Adidas"
+                                        id="brandAdidas">
+                                    <label class="form-check-label" for="brandAdidas">Adidas</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input filter-brand" type="checkbox" value="Sony"
+                                        id="brandSony">
+                                    <label class="form-check-label" for="brandSony">Sony</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Precio -->
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h6 class="form-label mb-3"><i class="bi bi-cash-stack me-2"></i>Rango de Precio</h6>
+                                <input type="range" class="form-range" min="0" max="20000" step="500" value="20000"
+                                    id="priceRange">
+                                <div class="d-flex justify-content-between">
+                                    <small class="text-muted">$0</small>
+                                    <small class="text-muted fw-bold" id="priceValue">$20,000</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Colores -->
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h6 class="form-label mb-3"><i class="bi bi-palette me-2"></i>Color</h6>
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <button class="btn btn-sm rounded-circle border p-0"
+                                        style="width:30px;height:30px;background:#1A1A2E;" title="Negro"
+                                        data-color="negro"></button>
+                                    <button class="btn btn-sm rounded-circle border p-0"
+                                        style="width:30px;height:30px;background:#FFFFFF;" title="Blanco"
+                                        data-color="blanco"></button>
+                                    <button class="btn btn-sm rounded-circle border p-0"
+                                        style="width:30px;height:30px;background:#C0C0C0;" title="Plateado"
+                                        data-color="plateado"></button>
+                                    <button class="btn btn-sm rounded-circle border p-0"
+                                        style="width:30px;height:30px;background:#2563EB;" title="Azul"
+                                        data-color="azul"></button>
+                                    <button class="btn btn-sm rounded-circle border p-0"
+                                        style="width:30px;height:30px;background:#DC2626;" title="Rojo"
+                                        data-color="rojo"></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botón limpiar filtros -->
+                        <button class="btn btn-outline-sara w-100" id="clearFilters">
+                            <i class="bi bi-x-circle me-1"></i>Limpiar Filtros
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ==================== PRODUCT GRID ==================== -->
+                <div class="col-lg-9">
+                    <!-- Sort Bar -->
+                    <div class="sort-bar d-flex flex-wrap justify-content-between align-items-center">
+                        <p class="mb-0 text-muted"><span id="productCount">8</span> productos encontrados</p>
+                        <div class="d-flex align-items-center gap-2">
+                            <label class="form-label mb-0 text-nowrap fw-500">Ordenar por:</label>
+                            <select class="form-select form-select-sm" id="sortSelect" style="width:auto;">
+                                <option value="relevance">Relevancia</option>
+                                <option value="price-asc">Precio: Menor a Mayor</option>
+                                <option value="price-desc">Precio: Mayor a Menor</option>
+                                <option value="popularity">Popularidad</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Product Grid -->
+                    <div class="row g-4" id="productGrid">
+                        <!-- Producto 1 -->
+                        <div class="col-sm-6 col-lg-4 product-item" data-category="electronica" data-brand="Samsung"
+                            data-price="12999.99" data-name="Televisor 55 Pulgadas" data-popularity="128">
+                            <div class="product-card">
+                                <div class="product-img-wrapper">
+                                    <span class="product-badge badge-popular">Popular</span>
+                                    <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&q=80"
+                                        alt="Televisor 55 pulgadas">
+                                </div>
+                                <div class="card-body">
+                                    <span class="product-brand">Samsung</span>
+                                    <h5 class="product-name">Televisor 55 Pulgadas</h5>
+                                    <div class="product-rating mb-1">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-half"></i>
+                                        <small class="text-muted ms-1">(128)</small>
+                                    </div>
+                                    <div class="product-price">$12,999.99</div>
+                                    <div class="product-actions">
+                                        <button class="btn btn-sara btn-sm"
+                                            onclick="addToCart('prod1','Televisor 55 Pulgadas',12999.99,'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=100&q=80','Samsung')">
+                                            <span><i class="bi bi-cart-plus me-1"></i>Agregar</span>
+                                        </button>
+                                        <button class="btn btn-outline-sara btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#productModal" data-name="Televisor 55 Pulgadas"
+                                            data-brand="Samsung" data-price="$12,999.99"
+                                            data-img="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600&q=80"
+                                            data-desc="Televisor LED de 55 pulgadas con resolución 4K, Smart TV, HDR10 y sonido envolvente. Ideal para disfrutar películas y series con la mejor calidad de imagen.">Ver
+                                            más</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Producto 2 -->
+                        <div class="col-sm-6 col-lg-4 product-item" data-category="deportes" data-brand="Nike"
+                            data-price="1899.50" data-name="Tenis Deportivos" data-popularity="95">
+                            <div class="product-card">
+                                <div class="product-img-wrapper">
+                                    <span class="product-badge badge-new">Nuevo</span>
+                                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&q=80"
+                                        alt="Tenis deportivos">
+                                </div>
+                                <div class="card-body">
+                                    <span class="product-brand">Nike</span>
+                                    <h5 class="product-name">Tenis Deportivos</h5>
+                                    <div class="product-rating mb-1">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star"></i>
+                                        <small class="text-muted ms-1">(95)</small>
+                                    </div>
+                                    <div class="product-price">$1,899.50</div>
+                                    <div class="product-actions">
+                                        <button class="btn btn-sara btn-sm"
+                                            onclick="addToCart('prod2','Tenis Deportivos',1899.50,'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=100&q=80','Nike')">
+                                            <span><i class="bi bi-cart-plus me-1"></i>Agregar</span>
+                                        </button>
+                                        <button class="btn btn-outline-sara btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#productModal" data-name="Tenis Deportivos"
+                                            data-brand="Nike" data-price="$1,899.50"
+                                            data-img="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80"
+                                            data-desc="Tenis deportivos de alto rendimiento con tecnología de amortiguación, transpirables y ultraligeros. Perfectos para running y entrenamiento diario.">Ver
+                                            más</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Producto 3 -->
+                        <div class="col-sm-6 col-lg-4 product-item" data-category="hogar" data-brand="LG"
+                            data-price="18500.00" data-name="Refrigerador Doble Puerta" data-popularity="72">
+                            <div class="product-card">
+                                <div class="product-img-wrapper">
+                                    <span class="product-badge badge-sale">-15%</span>
+                                    <img src="https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=400&q=80"
+                                        alt="Refrigerador doble puerta">
+                                </div>
+                                <div class="card-body">
+                                    <span class="product-brand">LG</span>
+                                    <h5 class="product-name">Refrigerador Doble Puerta</h5>
+                                    <div class="product-rating mb-1">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i>
+                                        <small class="text-muted ms-1">(72)</small>
+                                    </div>
+                                    <div class="product-price">$18,500.00 <span class="old-price">$21,764.00</span>
+                                    </div>
+                                    <div class="product-actions">
+                                        <button class="btn btn-sara btn-sm"
+                                            onclick="addToCart('prod3','Refrigerador Doble Puerta',18500.00,'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=100&q=80','LG')">
+                                            <span><i class="bi bi-cart-plus me-1"></i>Agregar</span>
+                                        </button>
+                                        <button class="btn btn-outline-sara btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#productModal" data-name="Refrigerador Doble Puerta"
+                                            data-brand="LG" data-price="$18,500.00"
+                                            data-img="https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=600&q=80"
+                                            data-desc="Refrigerador doble puerta con sistema Inverter, dispensador de agua y hielo, cajón de verduras con humedad controlada. Capacidad de 22 pies cúbicos.">Ver
+                                            más</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Producto 4 -->
+                        <div class="col-sm-6 col-lg-4 product-item" data-category="ropa" data-brand="Adidas"
+                            data-price="1250.00" data-name="Sudadera Deportiva" data-popularity="88">
+                            <div class="product-card">
+                                <div class="product-img-wrapper">
+                                    <span class="product-badge badge-popular">Popular</span>
+                                    <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&q=80"
+                                        alt="Sudadera deportiva">
+                                </div>
+                                <div class="card-body">
+                                    <span class="product-brand">Adidas</span>
+                                    <h5 class="product-name">Sudadera Deportiva</h5>
+                                    <div class="product-rating mb-1">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star"></i>
+                                        <small class="text-muted ms-1">(88)</small>
+                                    </div>
+                                    <div class="product-price">$1,250.00</div>
+                                    <div class="product-actions">
+                                        <button class="btn btn-sara btn-sm"
+                                            onclick="addToCart('prod4','Sudadera Deportiva',1250.00,'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=100&q=80','Adidas')">
+                                            <span><i class="bi bi-cart-plus me-1"></i>Agregar</span>
+                                        </button>
+                                        <button class="btn btn-outline-sara btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#productModal" data-name="Sudadera Deportiva"
+                                            data-brand="Adidas" data-price="$1,250.00"
+                                            data-img="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&q=80"
+                                            data-desc="Sudadera deportiva con capucha, tejido de algodón suave con tecnología AEROREADY para mayor comodidad. Ideal para entrenamientos y uso diario.">Ver
+                                            más</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Producto 5 -->
+                        <div class="col-sm-6 col-lg-4 product-item" data-category="electronica" data-brand="Sony"
+                            data-price="3499.99" data-name="Audífonos Inalámbricos" data-popularity="210">
+                            <div class="product-card">
+                                <div class="product-img-wrapper">
+                                    <span class="product-badge badge-new">Nuevo</span>
+                                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&q=80"
+                                        alt="Audífonos inalámbricos">
+                                </div>
+                                <div class="card-body">
+                                    <span class="product-brand">Sony</span>
+                                    <h5 class="product-name">Audífonos Inalámbricos</h5>
+                                    <div class="product-rating mb-1">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star"></i>
+                                        <small class="text-muted ms-1">(210)</small>
+                                    </div>
+                                    <div class="product-price">$3,499.99</div>
+                                    <div class="product-actions">
+                                        <button class="btn btn-sara btn-sm"
+                                            onclick="addToCart('prod5','Audífonos Inalámbricos',3499.99,'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100&q=80','Sony')">
+                                            <span><i class="bi bi-cart-plus me-1"></i>Agregar</span>
+                                        </button>
+                                        <button class="btn btn-outline-sara btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#productModal" data-name="Audífonos Inalámbricos"
+                                            data-brand="Sony" data-price="$3,499.99"
+                                            data-img="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80"
+                                            data-desc="Audífonos over-ear inalámbricos con cancelación de ruido activa, 30 horas de batería, sonido Hi-Res y micrófono integrado. Compatibles con Google Assistant.">Ver
+                                            más</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Producto 6 -->
+                        <div class="col-sm-6 col-lg-4 product-item" data-category="electronica" data-brand="Samsung"
+                            data-price="8999.99" data-name="Tableta Galaxy Tab" data-popularity="65">
+                            <div class="product-card">
+                                <div class="product-img-wrapper">
+                                    <span class="product-badge badge-sale">-10%</span>
+                                    <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&q=80"
+                                        alt="Tableta Galaxy Tab">
+                                </div>
+                                <div class="card-body">
+                                    <span class="product-brand">Samsung</span>
+                                    <h5 class="product-name">Tableta Galaxy Tab</h5>
+                                    <div class="product-rating mb-1">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i
+                                            class="bi bi-star"></i>
+                                        <small class="text-muted ms-1">(65)</small>
+                                    </div>
+                                    <div class="product-price">$8,999.99 <span class="old-price">$9,999.99</span></div>
+                                    <div class="product-actions">
+                                        <button class="btn btn-sara btn-sm"
+                                            onclick="addToCart('prod6','Tableta Galaxy Tab',8999.99,'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=100&q=80','Samsung')">
+                                            <span><i class="bi bi-cart-plus me-1"></i>Agregar</span>
+                                        </button>
+                                        <button class="btn btn-outline-sara btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#productModal" data-name="Tableta Galaxy Tab"
+                                            data-brand="Samsung" data-price="$8,999.99"
+                                            data-img="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&q=80"
+                                            data-desc="Tableta de 10.5 pulgadas con pantalla AMOLED, procesador Snapdragon, 128GB de almacenamiento y S Pen incluido. Perfecta para trabajo y entretenimiento.">Ver
+                                            más</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Producto 7 -->
+                        <div class="col-sm-6 col-lg-4 product-item" data-category="deportes" data-brand="Adidas"
+                            data-price="2350.00" data-name="Mochila Deportiva" data-popularity="45">
+                            <div class="product-card">
+                                <div class="product-img-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80"
+                                        alt="Mochila deportiva">
+                                </div>
+                                <div class="card-body">
+                                    <span class="product-brand">Adidas</span>
+                                    <h5 class="product-name">Mochila Deportiva</h5>
+                                    <div class="product-rating mb-1">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star"></i>
+                                        <small class="text-muted ms-1">(45)</small>
+                                    </div>
+                                    <div class="product-price">$2,350.00</div>
+                                    <div class="product-actions">
+                                        <button class="btn btn-sara btn-sm"
+                                            onclick="addToCart('prod7','Mochila Deportiva',2350.00,'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=100&q=80','Adidas')">
+                                            <span><i class="bi bi-cart-plus me-1"></i>Agregar</span>
+                                        </button>
+                                        <button class="btn btn-outline-sara btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#productModal" data-name="Mochila Deportiva"
+                                            data-brand="Adidas" data-price="$2,350.00"
+                                            data-img="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80"
+                                            data-desc="Mochila deportiva resistente al agua con compartimento para laptop, bolsillos laterales y correas acolchadas. Capacidad de 30L.">Ver
+                                            más</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Producto 8 -->
+                        <div class="col-sm-6 col-lg-4 product-item" data-category="hogar" data-brand="LG"
+                            data-price="6499.00" data-name="Microondas Inteligente" data-popularity="38">
+                            <div class="product-card">
+                                <div class="product-img-wrapper">
+                                    <span class="product-badge badge-new">Nuevo</span>
+                                    <img src="https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=400&q=80"
+                                        alt="Microondas inteligente">
+                                </div>
+                                <div class="card-body">
+                                    <span class="product-brand">LG</span>
+                                    <h5 class="product-name">Microondas Inteligente</h5>
+                                    <div class="product-rating mb-1">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i
+                                            class="bi bi-star"></i>
+                                        <small class="text-muted ms-1">(38)</small>
+                                    </div>
+                                    <div class="product-price">$6,499.00</div>
+                                    <div class="product-actions">
+                                        <button class="btn btn-sara btn-sm"
+                                            onclick="addToCart('prod8','Microondas Inteligente',6499.00,'https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=100&q=80','LG')">
+                                            <span><i class="bi bi-cart-plus me-1"></i>Agregar</span>
+                                        </button>
+                                        <button class="btn btn-outline-sara btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#productModal" data-name="Microondas Inteligente"
+                                            data-brand="LG" data-price="$6,499.00"
+                                            data-img="https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=600&q=80"
+                                            data-desc="Microondas con tecnología Smart Inverter, 1.5 pies cúbicos, sensor de cocción automático y función de descongelación rápida.">Ver
+                                            más</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ==================== PAGINACIÓN ==================== -->
+                    <nav class="mt-5 d-flex justify-content-center" id="paginationNav">
+                        <ul class="pagination">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#"><i class="bi bi-chevron-right"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         PRODUCT DETAIL MODAL
+         ============================================================ -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content" style="border-radius: var(--sara-radius); overflow:hidden;">
+                <div class="modal-body p-0">
+                    <div class="row g-0">
+                        <div class="col-md-6">
+                            <img src="" alt="Producto" class="w-100 h-100 object-fit-cover" id="modalImg"
+                                style="min-height:350px;">
+                        </div>
+                        <div class="col-md-6 p-4 d-flex flex-column justify-content-center">
+                            <button type="button" class="btn-close position-absolute top-0 end-0 m-3"
+                                data-bs-dismiss="modal"></button>
+                            <span class="product-brand mb-1" id="modalBrand"></span>
+                            <h3 class="fw-bold mb-2" id="modalName"></h3>
+                            <div class="product-rating mb-2">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                    class="bi bi-star-half"></i>
+                            </div>
+                            <p class="text-muted mb-3" id="modalDesc"></p>
+                            <h4 class="product-price mb-4" id="modalPrice"></h4>
+                            <button class="btn btn-sara" id="modalAddCart">
+                                <span><i class="bi bi-cart-plus me-2"></i>Agregar al Carrito</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+    <footer class="footer-sara">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5><i class="bi bi-bag-heart-fill me-2"></i>Tienda Sara</h5>
+                    <p>Tu tienda en línea favorita. Encontrarás las mejores marcas con los mejores precios y la mejor
+                        atención.</p>
+                    <div class="footer-social mt-3">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#"><i class="bi bi-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5>Navegación</h5>
+                    <ul>
+                        <li><a href="index.html"><i class="bi bi-chevron-right"></i> Inicio</a></li>
+                        <li><a href="productos.html"><i class="bi bi-chevron-right"></i> Productos</a></li>
+                        <li><a href="carrito.html"><i class="bi bi-chevron-right"></i> Carrito</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5>Categorías</h5>
+                    <ul>
+                        <li><a href="productos.html?cat=electronica"><i class="bi bi-chevron-right"></i> Electrónica</a>
+                        </li>
+                        <li><a href="productos.html?cat=ropa"><i class="bi bi-chevron-right"></i> Ropa</a></li>
+                        <li><a href="productos.html?cat=hogar"><i class="bi bi-chevron-right"></i> Hogar</a></li>
+                        <li><a href="productos.html?cat=deportes"><i class="bi bi-chevron-right"></i> Deportes</a></li>
+                        <li><a href="productos.html?cat=alimentos"><i class="bi bi-chevron-right"></i> Alimentos</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5>Contacto</h5>
+                    <ul>
+                        <li><a href="#"><i class="bi bi-geo-alt me-1"></i> Av. Principal #123, Ciudad</a></li>
+                        <li><a href="tel:+525551234567"><i class="bi bi-telephone me-1"></i> +52 (555) 123-4567</a></li>
+                        <li><a href="mailto:info@tiendasara.com"><i class="bi bi-envelope me-1"></i>
+                                info@tiendasara.com</a></li>
+                        <li><a href="#"><i class="bi bi-clock me-1"></i> Lun-Sáb: 9:00 - 20:00</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                <p>&copy; 2026 Tienda Sara. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/app.js"></script>
+</body>
+
+</html>

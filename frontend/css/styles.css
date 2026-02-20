@@ -1,0 +1,919 @@
+/* ============================================================
+   Tienda Sara - Custom Styles
+   Built on Bootstrap 5 with custom branding
+   ============================================================ */
+
+/* ---------- Google Fonts ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* ---------- CSS Custom Properties ---------- */
+:root {
+    --sara-primary: #6C3CE1;
+    --sara-primary-dark: #5228B8;
+    --sara-secondary: #FF6B6B;
+    --sara-accent: #FFD93D;
+    --sara-dark: #1A1A2E;
+    --sara-gray-100: #F8F9FA;
+    --sara-gray-200: #E9ECEF;
+    --sara-gray-600: #6C757D;
+    --sara-gradient: linear-gradient(135deg, #6C3CE1 0%, #FF6B6B 100%);
+    --sara-gradient-soft: linear-gradient(135deg, #6C3CE1 0%, #A855F7 50%, #FF6B6B 100%);
+    --sara-shadow: 0 4px 15px rgba(108, 60, 225, 0.15);
+    --sara-shadow-lg: 0 10px 40px rgba(108, 60, 225, 0.2);
+    --sara-radius: 12px;
+    --sara-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ---------- Base Styles ---------- */
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--sara-dark);
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    transition: var(--sara-transition);
+}
+
+img {
+    max-width: 100%;
+}
+
+/* ---------- Navbar ---------- */
+.navbar-sara {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+    padding: 0.8rem 0;
+    transition: var(--sara-transition);
+}
+
+.navbar-sara .navbar-brand {
+    font-weight: 800;
+    font-size: 1.6rem;
+    background: var(--sara-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.navbar-sara .nav-link {
+    font-weight: 500;
+    color: var(--sara-dark) !important;
+    padding: 0.5rem 1rem !important;
+    position: relative;
+}
+
+.navbar-sara .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: var(--sara-gradient);
+    transition: var(--sara-transition);
+    border-radius: 2px;
+}
+
+.navbar-sara .nav-link:hover::after,
+.navbar-sara .nav-link.active::after {
+    width: 70%;
+}
+
+.navbar-sara .nav-link:hover {
+    color: var(--sara-primary) !important;
+}
+
+.search-bar {
+    border: 2px solid var(--sara-gray-200);
+    border-radius: 50px;
+    overflow: hidden;
+    transition: var(--sara-transition);
+}
+
+.search-bar:focus-within {
+    border-color: var(--sara-primary);
+    box-shadow: 0 0 0 3px rgba(108, 60, 225, 0.15);
+}
+
+.search-bar input {
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.search-bar input:focus {
+    box-shadow: none;
+}
+
+.search-bar .btn {
+    background: var(--sara-gradient);
+    border: none;
+    color: #fff;
+    border-radius: 50px;
+    padding: 0.5rem 1rem;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -2px;
+    right: 0px;
+    background: var(--sara-secondary);
+    color: #fff;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+/* ---------- Hero Carousel ---------- */
+.hero-carousel .carousel-item {
+    height: 480px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.hero-carousel .carousel-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.7) 0%, rgba(108, 60, 225, 0.4) 100%);
+}
+
+.hero-carousel .carousel-caption {
+    bottom: 50%;
+    transform: translateY(50%);
+    text-align: left;
+    left: 8%;
+    right: 40%;
+}
+
+.hero-carousel .carousel-caption h2 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1.2;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.hero-carousel .carousel-caption p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* ---------- Buttons ---------- */
+.btn-sara {
+    background: var(--sara-gradient);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 0.7rem 2rem;
+    font-weight: 600;
+    transition: var(--sara-transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-sara::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #5228B8 0%, #e05555 100%);
+    opacity: 0;
+    transition: var(--sara-transition);
+}
+
+.btn-sara:hover {
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: var(--sara-shadow-lg);
+}
+
+.btn-sara:hover::before {
+    opacity: 1;
+}
+
+.btn-sara span {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-outline-sara {
+    border: 2px solid var(--sara-primary);
+    color: var(--sara-primary);
+    border-radius: 50px;
+    padding: 0.6rem 1.8rem;
+    font-weight: 600;
+    transition: var(--sara-transition);
+    background: transparent;
+}
+
+.btn-outline-sara:hover {
+    background: var(--sara-primary);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: var(--sara-shadow);
+}
+
+/* ---------- Section Styles ---------- */
+.section-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+    color: var(--sara-gray-600);
+    font-size: 1.05rem;
+    margin-bottom: 2.5rem;
+}
+
+.section-divider {
+    width: 60px;
+    height: 4px;
+    background: var(--sara-gradient);
+    border-radius: 4px;
+    margin: 0.8rem auto 1rem;
+}
+
+/* ---------- Category Cards ---------- */
+.category-card {
+    background: #fff;
+    border-radius: var(--sara-radius);
+    padding: 2rem 1rem;
+    text-align: center;
+    transition: var(--sara-transition);
+    border: 1px solid var(--sara-gray-200);
+    cursor: pointer;
+}
+
+.category-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--sara-shadow-lg);
+    border-color: var(--sara-primary);
+}
+
+.category-card .icon-wrapper {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: var(--sara-gradient-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 1.8rem;
+    color: #fff;
+    transition: var(--sara-transition);
+}
+
+.category-card:hover .icon-wrapper {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.category-card h6 {
+    font-weight: 600;
+    margin: 0;
+    color: var(--sara-dark);
+}
+
+/* ---------- Product Cards ---------- */
+.product-card {
+    background: #fff;
+    border-radius: var(--sara-radius);
+    overflow: hidden;
+    transition: var(--sara-transition);
+    border: 1px solid var(--sara-gray-200);
+    height: 100%;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sara-shadow-lg);
+}
+
+.product-card .product-img-wrapper {
+    position: relative;
+    overflow: hidden;
+    height: 220px;
+    background: var(--sara-gray-100);
+}
+
+.product-card .product-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--sara-transition);
+}
+
+.product-card:hover .product-img-wrapper img {
+    transform: scale(1.08);
+}
+
+.product-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 2;
+}
+
+.badge-new {
+    background: var(--sara-primary);
+    color: #fff;
+}
+
+.badge-sale {
+    background: var(--sara-secondary);
+    color: #fff;
+}
+
+.badge-popular {
+    background: var(--sara-accent);
+    color: var(--sara-dark);
+}
+
+.product-card .card-body {
+    padding: 1.2rem;
+}
+
+.product-card .product-brand {
+    font-size: 0.8rem;
+    color: var(--sara-gray-600);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+.product-card .product-name {
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0.3rem 0;
+    color: var(--sara-dark);
+}
+
+.product-card .product-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--sara-primary);
+}
+
+.product-card .product-price .old-price {
+    font-size: 0.85rem;
+    color: var(--sara-gray-600);
+    text-decoration: line-through;
+    font-weight: 400;
+    margin-left: 0.5rem;
+}
+
+.product-card .product-rating {
+    color: var(--sara-accent);
+    font-size: 0.85rem;
+}
+
+.product-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.8rem;
+}
+
+.product-actions .btn {
+    flex: 1;
+    font-size: 0.85rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+}
+
+/* ---------- CTA Section ---------- */
+.cta-section {
+    background: var(--sara-gradient-soft);
+    padding: 5rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-section::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    top: -100px;
+    right: -50px;
+}
+
+.cta-section::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    bottom: -60px;
+    left: 10%;
+}
+
+.cta-section h2 {
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
+.cta-section p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+}
+
+.btn-cta {
+    background: #fff;
+    color: var(--sara-primary);
+    border: none;
+    border-radius: 50px;
+    padding: 0.8rem 2.5rem;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: var(--sara-transition);
+}
+
+.btn-cta:hover {
+    background: var(--sara-dark);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- Testimonials ---------- */
+.testimonial-card {
+    background: #fff;
+    border-radius: var(--sara-radius);
+    padding: 2rem;
+    border: 1px solid var(--sara-gray-200);
+    transition: var(--sara-transition);
+    height: 100%;
+}
+
+.testimonial-card:hover {
+    box-shadow: var(--sara-shadow);
+    border-color: var(--sara-primary);
+}
+
+.testimonial-card .stars {
+    color: var(--sara-accent);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.testimonial-card .testimonial-text {
+    font-style: italic;
+    color: var(--sara-gray-600);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.testimonial-card .client-info {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.testimonial-card .client-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--sara-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.testimonial-card .client-name {
+    font-weight: 600;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.testimonial-card .client-role {
+    font-size: 0.8rem;
+    color: var(--sara-gray-600);
+    margin: 0;
+}
+
+/* ---------- About Section ---------- */
+.about-section {
+    background: var(--sara-gray-100);
+}
+
+.about-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+}
+
+.about-card .about-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--sara-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.2rem;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.about-card h5 {
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+}
+
+.about-card p {
+    color: var(--sara-gray-600);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* ---------- Footer ---------- */
+.footer-sara {
+    background: var(--sara-dark);
+    color: #fff;
+    padding: 4rem 0 0;
+}
+
+.footer-sara h5 {
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    font-size: 1.1rem;
+}
+
+.footer-sara p,
+.footer-sara a {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.footer-sara a:hover {
+    color: var(--sara-accent);
+}
+
+.footer-sara ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-sara ul li {
+    margin-bottom: 0.6rem;
+}
+
+.footer-sara ul li a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-social a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.1rem;
+    margin-right: 0.5rem;
+    transition: var(--sara-transition);
+}
+
+.footer-social a:hover {
+    background: var(--sara-gradient);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem 0;
+    margin-top: 3rem;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 0.85rem;
+}
+
+/* ---------- Product Gallery (productos.html) ---------- */
+.filter-sidebar .form-label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--sara-dark);
+}
+
+.filter-sidebar .form-check-label {
+    font-size: 0.9rem;
+    color: var(--sara-gray-600);
+}
+
+.filter-sidebar .form-range::-webkit-slider-thumb {
+    background: var(--sara-primary);
+}
+
+.sort-bar {
+    background: #fff;
+    border-radius: var(--sara-radius);
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--sara-gray-200);
+    margin-bottom: 1.5rem;
+}
+
+.sort-bar select {
+    border-radius: 8px;
+    border: 2px solid var(--sara-gray-200);
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+}
+
+.sort-bar select:focus {
+    border-color: var(--sara-primary);
+    box-shadow: 0 0 0 3px rgba(108, 60, 225, 0.15);
+}
+
+.page-link {
+    color: var(--sara-primary);
+    border-radius: 8px !important;
+    margin: 0 3px;
+    font-weight: 500;
+}
+
+.page-link:hover,
+.page-item.active .page-link {
+    background: var(--sara-primary);
+    border-color: var(--sara-primary);
+    color: #fff;
+}
+
+/* ---------- Cart Page (carrito.html) ---------- */
+.cart-table {
+    border-radius: var(--sara-radius);
+    overflow: hidden;
+}
+
+.cart-table thead {
+    background: var(--sara-gradient);
+    color: #fff;
+}
+
+.cart-table thead th {
+    font-weight: 600;
+    padding: 1rem;
+    border: none;
+    font-size: 0.9rem;
+}
+
+.cart-table tbody td {
+    padding: 1rem;
+    vertical-align: middle;
+    border-color: var(--sara-gray-200);
+}
+
+.cart-product-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cart-product-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cart-product-info h6 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.cart-product-info small {
+    color: var(--sara-gray-600);
+}
+
+.qty-control {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 2px solid var(--sara-gray-200);
+    border-radius: 8px;
+    overflow: hidden;
+    width: fit-content;
+}
+
+.qty-control button {
+    background: var(--sara-gray-100);
+    border: none;
+    width: 36px;
+    height: 36px;
+    font-weight: 700;
+    color: var(--sara-dark);
+    transition: var(--sara-transition);
+}
+
+.qty-control button:hover {
+    background: var(--sara-primary);
+    color: #fff;
+}
+
+.qty-control input {
+    width: 45px;
+    text-align: center;
+    border: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.qty-control input:focus {
+    outline: none;
+}
+
+.btn-delete {
+    color: var(--sara-secondary);
+    background: rgba(255, 107, 107, 0.1);
+    border: none;
+    border-radius: 8px;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--sara-transition);
+}
+
+.btn-delete:hover {
+    background: var(--sara-secondary);
+    color: #fff;
+}
+
+.order-summary {
+    background: #fff;
+    border-radius: var(--sara-radius);
+    border: 1px solid var(--sara-gray-200);
+    padding: 1.5rem;
+}
+
+.order-summary h5 {
+    font-weight: 700;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--sara-gray-200);
+    margin-bottom: 1rem;
+}
+
+.order-summary .summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+    font-size: 0.95rem;
+}
+
+.order-summary .summary-row.total {
+    border-top: 2px solid var(--sara-dark);
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--sara-primary);
+}
+
+.coupon-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.coupon-form input {
+    border-radius: 8px;
+    border: 2px solid var(--sara-gray-200);
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    flex: 1;
+}
+
+.coupon-form input:focus {
+    border-color: var(--sara-primary);
+    box-shadow: none;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.empty-cart i {
+    font-size: 5rem;
+    color: var(--sara-gray-200);
+    margin-bottom: 1.5rem;
+}
+
+.empty-cart h4 {
+    color: var(--sara-gray-600);
+    margin-bottom: 1rem;
+}
+
+/* ---------- Breadcrumb ---------- */
+.breadcrumb-sara {
+    background: var(--sara-gray-100);
+    padding: 1rem 0;
+}
+
+.breadcrumb-sara .breadcrumb-item a {
+    color: var(--sara-primary);
+    font-weight: 500;
+}
+
+.breadcrumb-sara .breadcrumb-item.active {
+    color: var(--sara-gray-600);
+}
+
+/* ---------- Animations ---------- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .hero-carousel .carousel-item {
+        height: 350px;
+    }
+
+    .hero-carousel .carousel-caption {
+        right: 10%;
+        left: 10%;
+        text-align: center;
+    }
+
+    .hero-carousel .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .cta-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .filter-sidebar {
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-carousel .carousel-item {
+        height: 280px;
+    }
+
+    .hero-carousel .carousel-caption h2 {
+        font-size: 1.4rem;
+    }
+
+    .cart-product-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
