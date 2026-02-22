@@ -1,17 +1,20 @@
 package com.tiendasara.controllers;
 
-import java.util.List;
-import java.util.UUID;
-
+import com.tiendasara.models.Category;
+import com.tiendasara.models.Mark;
+import com.tiendasara.models.Product;
+import com.tiendasara.models.ProductDto;
+import com.tiendasara.services.CategoryRepository;
+import com.tiendasara.services.MarkRepository;
+import com.tiendasara.services.ProductRepository;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import com.tiendasara.models.*;
-import com.tiendasara.services.*;
-
-import jakarta.validation.Valid;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * Controlador MVC para gestión de Productos.

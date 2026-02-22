@@ -1,9 +1,12 @@
 /**
  * ============================================================
  * Tienda Sara - Shared JavaScript
- * Cart management, filters, sorting, and UI interactions
+ * API integration, cart management, filters, sorting, and UI
  * ============================================================
  */
+
+// ==================== API CONFIG ====================
+const API_BASE = 'http://localhost:8080/api';
 
 // ==================== CART STATE ====================
 function getCart() {
@@ -95,7 +98,136 @@ function showToast(message) {
 
 // ==================== FORMAT CURRENCY ====================
 function formatMoney(num) {
-    return '$' + num.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    return '$' + Number(num).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+}
+
+// ==================== PRODUCT IMAGE MAP ====================
+// Map product names to Unsplash images for display
+const PRODUCT_IMAGES = {
+    'televisor 55 pulgadas': 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&q=80',
+    'tenis deportivos': 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&q=80',
+    'refrigerador doble puerta': 'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=400&q=80',
+    'sudadera deportiva': 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&q=80',
+    'audífonos inalámbricos': 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&q=80',
+};
+
+const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80';
+
+function getProductImage(name, size) {
+    const key = name.toLowerCase();
+    let url = PRODUCT_IMAGES[key] || DEFAULT_IMAGE;
+    if (size) {
+        url = url.replace('w=400', 'w=' + size);
+    }
+    return url;
+}
+
+// ==================== PRODUCT DESCRIPTIONS ====================
+const PRODUCT_DESCRIPTIONS = {
+    'televisor 55 pulgadas': 'Televisor LED de 55 pulgadas con resolución 4K, Smart TV, HDR10 y sonido envolvente. Ideal para disfrutar películas y series con la mejor calidad de imagen.',
+    'tenis deportivos': 'Tenis deportivos de alto rendimiento con tecnología de amortiguación, transpirables y ultraligeros. Perfectos para running y entrenamiento diario.',
+    'refrigerador doble puerta': 'Refrigerador doble puerta con sistema Inverter, dispensador de agua y hielo, cajón de verduras con humedad controlada. Capacidad de 22 pies cúbicos.',
+    'sudadera deportiva': 'Sudadera deportiva con capucha, tejido de algodón suave con tecnología AEROREADY para mayor comodidad. Ideal para entrenamientos y uso diario.',
+    'audífonos inalámbricos': 'Audífonos over-ear inalámbricos con cancelación de ruido activa, 30 horas de batería, sonido Hi-Res y micrófono integrado.',
+};
+
+function getProductDescription(name) {
+    return PRODUCT_DESCRIPTIONS[name.toLowerCase()] || 'Producto de alta calidad disponible en Tienda Sara.';
+}
+
+// ==================== LOAD PRODUCTS FROM API ====================
+let allProducts = [];
+
+async function loadProducts() {
+    try {
+        const res = await fetch(`${API_BASE}/products`);
+        if (!res.ok) throw new Error('Error al cargar productos');
+        allProducts = await res.json();
+        return allProducts;
+    } catch (e) {
+        console.error('Error cargando productos:', e);
+        return [];
+    }
+}
+
+// ==================== RENDER PRODUCT CARD ====================
+function createProductCard(product, colClass) {
+    const img = getProductImage(product.descripcion, 400);
+    const imgThumb = getProductImage(product.descripcion, 100);
+    const imgLarge = getProductImage(product.descripcion, 600);
+    const desc = getProductDescription(product.descripcion);
+    const brandName = product.mark ? product.mark.descripcion : 'Sin marca';
+    const catName = product.category ? product.category.descripcion : '';
+    const price = Number(product.precio);
+    const col = colClass || 'col-sm-6 col-lg-4';
+
+    return `
+    <div class="${col} product-item" data-category="${catName.toLowerCase()}" data-brand="${brandName}"
+         data-price="${price}" data-name="${product.descripcion}" data-popularity="${product.cantidad}">
+        <div class="product-card">
+            <div class="product-img-wrapper">
+                <img src="${img}" alt="${product.descripcion}">
+            </div>
+            <div class="card-body">
+                <span class="product-brand">${brandName}</span>
+                <h5 class="product-name">${product.descripcion}</h5>
+                <div class="product-rating mb-1">
+                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+                    <small class="text-muted ms-1">(${Math.floor(Math.random() * 150 + 30)})</small>
+                </div>
+                <div class="product-price">${formatMoney(price)}</div>
+                <div class="product-actions">
+                    <button class="btn btn-sara btn-sm"
+                        onclick="addToCart('${product.id}','${product.descripcion.replace(/'/g, "\\'")}',${price},'${imgThumb}','${brandName}')">
+                        <span><i class="bi bi-cart-plus me-1"></i>Agregar</span>
+                    </button>
+                    <button class="btn btn-outline-sara btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#productModal" data-name="${product.descripcion}"
+                        data-brand="${brandName}" data-price="${formatMoney(price)}"
+                        data-img="${imgLarge}"
+                        data-desc="${desc}">Ver más</button>
+                </div>
+            </div>
+        </div>
+    </div>`;
+}
+
+// ==================== RENDER PRODUCT GRID (productos.html) ====================
+async function renderProductGrid() {
+    const grid = document.getElementById('productGrid');
+    if (!grid) return;
+
+    grid.innerHTML = '<div class="text-center py-5"><div class="spinner-border text-primary" role="status"></div><p class="mt-2 text-muted">Cargando productos...</p></div>';
+
+    const products = await loadProducts();
+
+    if (products.length === 0) {
+        grid.innerHTML = '<div class="col-12 text-center py-5"><i class="bi bi-box-seam d-block" style="font-size:3rem;color:var(--sara-gray-400);"></i><p class="text-muted mt-2">No hay productos disponibles</p></div>';
+        return;
+    }
+
+    grid.innerHTML = products.map(p => createProductCard(p, 'col-sm-6 col-lg-4')).join('');
+
+    const countEl = document.getElementById('productCount');
+    if (countEl) countEl.textContent = products.length;
+}
+
+// ==================== RENDER POPULAR PRODUCTS (index.html) ====================
+async function renderPopularProducts() {
+    const container = document.getElementById('popularProducts');
+    if (!container) return;
+
+    container.innerHTML = '<div class="col-12 text-center py-5"><div class="spinner-border text-primary" role="status"></div></div>';
+
+    const products = await loadProducts();
+    const topProducts = products.slice(0, 4);
+
+    if (topProducts.length === 0) {
+        container.innerHTML = '<div class="col-12 text-center py-4"><p class="text-muted">No hay productos disponibles aún</p></div>';
+        return;
+    }
+
+    container.innerHTML = topProducts.map(p => createProductCard(p, 'col-sm-6 col-lg-3')).join('');
 }
 
 // ==================== RENDER CART PAGE ====================
@@ -344,12 +476,20 @@ function setupCheckout() {
 }
 
 // ==================== INIT ====================
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     updateCartBadge();
     renderCart();
     setupProductModal();
     setupCoupon();
     setupCheckout();
+
+    // Load products from API for product grid (productos.html)
+    await renderProductGrid();
+
+    // Load popular products from API (index.html)
+    await renderPopularProducts();
+
+    // Apply URL-based filters after products are loaded
     applyCategoryFromURL();
     applySearchFromURL();
 
